@@ -82,7 +82,7 @@
     this.each(function() {
       var id = $(this).attr('id');
 
-      var tagslist = $(this).val().split(delimiter[id]);
+      var tagslist = $(this).val().split(delimiter[id][0]);
       if (tagslist[0] === '') {
         tagslist = [];
       }
@@ -143,13 +143,13 @@
     this.each(function() {
       var id = $(this).attr('id');
 
-      var old = $(this).val().split(delimiter[id]);
+      var old = $(this).val().split(delimiter[id][0]);
 
       $('#' + id + '_tagsinput .tag').remove();
       str = '';
       for (i = 0; i < old.length; i++) {
         if (old[i] != value) {
-          str = str + delimiter[id] + old[i];
+          str = str + delimiter[id][0] + old[i];
         }
       }
 
@@ -166,7 +166,7 @@
 
   $.fn.tagExist = function(val) {
     var id = $(this).attr('id');
-    var tagslist = $(this).val().split(delimiter[id]);
+    var tagslist = $(this).val().split(delimiter[id][0]);
     return (jQuery.inArray(val, tagslist) >= 0); //true when tag exists, false when not
   };
 
@@ -188,7 +188,7 @@
         selectFirst: false
       },
       hide: true,
-      delimiter: ',',
+      delimiter: [','],
       unique: true,
       removeWithBackspace: true,
       placeholderColor: '#666666',
